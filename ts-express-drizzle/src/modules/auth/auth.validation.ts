@@ -13,5 +13,10 @@ export const RegisterSchema = z.object({
     .regex(/[a-z]/, 'Must include at least one lowercase letter')
     .regex(/[0-9]/, 'Must include at least one number'),
 })
-
 export type RegisterInput = z.infer<typeof RegisterSchema>
+
+export const LoginSchema = z.object({
+  email: z.email('Invalid email address'),
+  password: z.string(),
+})
+export type LoginInput = z.infer<typeof LoginSchema>
