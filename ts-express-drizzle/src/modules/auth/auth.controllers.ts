@@ -31,7 +31,7 @@ export const login = async (
   res: Response,
 ) => {
   // Find user by email
-  const user = await authRepo.getUserByEmail(req.body.email)
+  const user = await authRepo.getUserWithPassword(req.body.email)
   if (!user) {
     return res.status(401).json({
       error: 'Invalid credentials (email)',
