@@ -23,7 +23,7 @@ export const registerUser = async (
     password: hashedPassword,
   })
 
-  res.json(user)
+  res.status(201).json(user)
 }
 
 export const login = async (
@@ -51,5 +51,18 @@ export const login = async (
 
   res.json({
     token,
+  })
+}
+
+export const getUser = async (req: Request, res: Response) => {
+  const user = req.user
+  if (!user) {
+    return res.status(500).json({
+      error: 'Something went wrong getting user',
+    })
+  }
+
+  res.json({
+    user,
   })
 }

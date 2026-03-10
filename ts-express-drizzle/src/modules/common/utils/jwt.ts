@@ -11,5 +11,6 @@ export const signToken = (payload: JwtPayload) => {
 }
 
 export const verifyToken = (token: string) => {
-  return jwt.verify(token, JWT_SECRET)
+  const payload = jwt.verify(token, JWT_SECRET) as unknown
+  return payload as JwtPayload
 }
