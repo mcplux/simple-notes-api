@@ -16,3 +16,4 @@ export const notesTable = pgTable('notes', {
 })
 
 export type Note = typeof notesTable.$inferSelect
+export type NoteInsert = typeof notesTable.$inferInsert
