@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 const JWT_SECRET = 'super_secret_string'
 
 export interface JwtPayload {
-  sub: number
+  sub: string
 }
 
 export const signToken = (payload: JwtPayload) => {

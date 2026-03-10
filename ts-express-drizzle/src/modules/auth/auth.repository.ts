@@ -19,7 +19,7 @@ export const getUserByEmail = async (email: string): Promise<User | null> => {
   return user ?? null
 }
 
-export const getUserById = async (id: number): Promise<User | null> => {
+export const getUserById = async (id: string): Promise<User | null> => {
   const [user] = await db.select().from(usersTable).where(eq(usersTable.id, id))
 
   return user ?? null

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { JwtPayload, verifyToken } from '../common/utils/jwt'
+import { verifyToken } from '../common/utils/jwt'
 import * as authRepo from './auth.repository'
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
