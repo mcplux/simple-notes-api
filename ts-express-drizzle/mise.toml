@@ -1,2 +1,14 @@
 [tools]
 node = "24"
+
+[tasks.dev]
+description = "Start server in development mode"
+run = "npm run dev"
+
+[tasks."containers:up"]
+description = "Raise development containers"
+run = "docker compose up -d"
+
+[tasks."containers:down"]
+description = "Lower development containers"
+run = "docker compose down"
