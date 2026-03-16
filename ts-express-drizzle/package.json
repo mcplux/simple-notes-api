@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx watch --include \"./src/**/*.ts\" src/server.ts",
+    "dev": "tsx watch --include \"./src/**/*.ts\" ./src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "db:generate": "drizzle-kit generate",

@@ -1,10 +1,11 @@
 import { Router } from 'express'
-import authRoutes from '../modules/auth/auth.routes'
-import notesRoutes from '../modules/notes/notes.routes'
+import { appContainer } from '../container'
 
 const api = Router()
 
-api.use('/auth', authRoutes)
-api.use('/notes', notesRoutes)
+const { authModule, notesModule } = appContainer()
+
+api.use(authModule.namespace, authModule.router)
+api.use(notesModule.namespace, notesModule.router)
 
 export default api

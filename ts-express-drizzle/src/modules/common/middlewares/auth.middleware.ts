@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
-import { verifyToken } from '../common/utils/jwt'
-import * as authRepo from './auth.repository'
+import { verifyToken } from '../utils/jwt'
+import { authRepository } from '../../auth/auth.repository'
+
+const authRepo = authRepository()
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization
