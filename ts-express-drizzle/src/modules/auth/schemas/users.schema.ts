@@ -13,5 +13,4 @@ export const usersTable = pgTable('users', {
 })
 
 export type User = typeof usersTable.$inferSelect
-export type UserResponse = Pick<User, 'id' | 'name' | 'email'>
 export type UserInsert = typeof usersTable.$inferInsert

@@ -1,4 +1,4 @@
-import { UserResponse } from './modules/auth/auth.schemas'
+import { UserResponse } from './modules/auth/dtos'
 
 declare global {
   namespace Express {
