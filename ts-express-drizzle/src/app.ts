@@ -3,6 +3,9 @@ import swaggerUi from 'swagger-ui-express'
 import api from './api'
 import { generateOpenAPIDocument } from './lib/openapi'
 
+// Import OpenAPI docs to register paths
+import './modules/auth/auth.openapi'
+
 const app = express()
 const openApiDocument = generateOpenAPIDocument()
 
