@@ -1,7 +1,7 @@
 import z from 'zod'
 import { registry } from '../../lib/openapi'
 import { getResponseSchema } from '../common/utils/get-response-schema'
-import { createNoteSchema, noteResponseDto, paramsNoteDto } from './dtos'
+import { noteInputDto, noteResponseDto, paramsNoteDto } from './dtos'
 
 registry.registerPath({
   method: 'post',
@@ -11,7 +11,7 @@ registry.registerPath({
   security: [{ bearerAuth: [] }],
   request: {
     body: {
-      content: { 'application/json': { schema: createNoteSchema } },
+      content: { 'application/json': { schema: noteInputDto } },
     },
   },
   responses: {
@@ -57,11 +57,56 @@ registry.registerPath({
     params: paramsNoteDto,
   },
   responses: {
-    201: {
+    200: {
       description: 'Note retrieved successfully',
       content: {
         'application/json': {
-          schema: getResponseSchema(201, z.object({ note: noteResponseDto })),
+          schema: getResponseSchema(200, z.object({ note: noteResponseDto })),
+        },
+      },
+    },
+  },
+})
+
+registry.registerPath({
+  method: 'put',
+  path: '/api/notes/{id}',
+  tags: ['Notes'],
+  summary: 'Update note by id',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: paramsNoteDto,
+    body: {
+      content: { 'application/json': { schema: noteInputDto } },
+    },
+  },
+  responses: {
+    200: {
+      description: 'Note updated successfully',
+      content: {
+        'application/json': {
+          schema: getResponseSchema(200, z.object({ note: noteResponseDto })),
+        },
+      },
+    },
+  },
+})
+
+registry.registerPath({
+  method: 'delete',
+  path: '/api/notes/{id}',
+  tags: ['Notes'],
+  summary: 'Delete note by id',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: paramsNoteDto,
+  },
+  responses: {
+    200: {
+      description: 'Note deleted successfully',
+      content: {
+        'application/json': {
+          schema: getResponseSchema(200),
         },
       },
     },

@@ -43,10 +43,46 @@ export const notesRepository = () => {
     return note ?? null
   }
 
+  const update = async (
+    id: Note['id'],
+    userId: Note['userId'],
+    data: NoteInsert,
+  ): Promise<Note | null> => {
+    if (!userId) {
+      return null
+    }
+
+    const [note] = await db
+      .update(notesTable)
+      .set(data)
+      .where(and(eq(notesTable.id, id), eq(notesTable.userId, userId)))
+      .returning()
+
+    return note ?? null
+  }
+
+  const deleteById = async (
+    id: Note['id'],
+    userId: Note['userId'],
+  ): Promise<boolean> => {
+    if (!userId) {
+      return false
+    }
+
+    const result = await db
+      .delete(notesTable)
+      .where(and(eq(notesTable.id, id), eq(notesTable.userId, userId)))
+      .returning({ id: notesTable.id })
+
+    return result.length > 0
+  }
+
   return {
     create,
     findMany,
     findOneById,
+    update,
+    deleteById,
   }
 }
 

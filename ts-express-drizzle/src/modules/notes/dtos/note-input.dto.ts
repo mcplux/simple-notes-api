@@ -3,7 +3,7 @@ import { extendZodWithOpenApi } from '@asteasolutions/zod-to-openapi'
 
 extendZodWithOpenApi(z)
 
-export const createNoteSchema = z.object({
+export const noteInputDto = z.object({
   title: z
     .string()
     .min(3, 'Title must be at least 3 characters')
@@ -16,4 +16,4 @@ export const createNoteSchema = z.object({
     .openapi({ example: 'My note content' }),
 })
 
-export type CreateNoteInput = z.infer<typeof createNoteSchema>
+export type NoteInput = z.infer<typeof noteInputDto>
