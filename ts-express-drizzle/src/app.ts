@@ -5,6 +5,7 @@ import { generateOpenAPIDocument } from './lib/openapi'
 
 // Import OpenAPI docs to register paths
 import './modules/auth/auth.openapi'
+import './modules/notes/notes.openapi'
 
 const app = express()
 const openApiDocument = generateOpenAPIDocument()
