@@ -1,16 +1,15 @@
 import jwt from 'jsonwebtoken'
-
-const JWT_SECRET = 'super_secret_string'
+import { env } from '../../../config/env'
 
 export interface JwtPayload {
   sub: string
 }
 
 export const signToken = (payload: JwtPayload) => {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' })
+  return jwt.sign(payload, env.get('JWT_SECRET'), { expiresIn: '7d' })
 }
 
 export const verifyToken = (token: string) => {
-  const payload = jwt.verify(token, JWT_SECRET) as unknown
+  const payload = jwt.verify(token, env.get('JWT_SECRET')) as unknown
   return payload as JwtPayload
 }
