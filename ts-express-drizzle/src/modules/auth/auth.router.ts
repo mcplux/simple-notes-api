@@ -6,6 +6,7 @@ import { auth } from '../common/middlewares/auth.middleware'
 import { AuthController } from './auth.controller'
 import { loginDto, registerDto, userResponseDto } from './dtos'
 import { registry } from '../../lib/openapi'
+import { getResponseSchema } from '../common/utils/get-response-schema'
 
 extendZodWithOpenApi(z)
 
@@ -36,7 +37,11 @@ registry.registerPath({
   responses: {
     201: {
       description: 'User created successfully',
-      content: { 'application/json': { schema: userResponseDto } },
+      content: {
+        'application/json': {
+          schema: getResponseSchema(201, z.object({ user: userResponseDto })),
+        },
+      },
     },
   },
 })
@@ -56,11 +61,12 @@ registry.registerPath({
       description: 'User authenticated successfully',
       content: {
         'application/json': {
-          schema: z.object({
-            token: z.jwt().openapi({
-              example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+          schema: getResponseSchema(
+            200,
+            z.object({
+              token: z.string().openapi({ example: 'jwt.token.here' }),
             }),
-          }),
+          ),
         },
       },
     },
@@ -77,7 +83,9 @@ registry.registerPath({
     200: {
       description: 'Authenticated user info',
       content: {
-        'application/json': { schema: userResponseDto },
+        'application/json': {
+          schema: getResponseSchema(200, z.object({ user: userResponseDto })),
+        },
       },
     },
   },
