@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm'
-import { db } from '../../db'
+import { db } from '../../config/database'
 import { UserInsert, usersTable } from './schemas/users.schema'
 
 export const authRepository = () => {

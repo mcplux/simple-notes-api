@@ -1,5 +1,5 @@
 import { and, eq } from 'drizzle-orm'
-import { db } from '../../db'
+import { db } from '../../config/database'
 import { Note, NoteInsert, notesTable } from './schemas/notes.schema'
 
 export const notesRepository = () => {

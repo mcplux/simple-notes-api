@@ -1,7 +1,7 @@
 import express from 'express'
 import swaggerUi from 'swagger-ui-express'
 import api from './api'
-import { generateOpenAPIDocument } from './lib/openapi'
+import { generateOpenAPIDocument } from './config/openapi'
 
 // Import OpenAPI docs to register paths
 import './modules/auth/auth.openapi'

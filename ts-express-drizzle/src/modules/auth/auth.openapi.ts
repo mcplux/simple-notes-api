@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { registry } from '../../lib/openapi'
+import { registry } from '../../config/openapi'
 import { getResponseSchema } from '../common/utils/get-response-schema'
 import { loginDto, registerDto, userResponseDto } from './dtos'
 
